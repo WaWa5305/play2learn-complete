@@ -5,6 +5,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     
-    def__str__(self): return self.user.username
+def __str__(self):
+    return self.user.username
 
 
