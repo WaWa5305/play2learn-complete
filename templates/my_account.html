@@ -1,0 +1,12 @@
+{% extends "_base_vue.html" %}
+{% block title %}My Account{% endblock %}
+{% block main %}
+<div class="container">
+    <h2>My Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}
