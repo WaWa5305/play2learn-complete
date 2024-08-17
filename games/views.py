@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Game
-from .models import Game
 from .forms import GameForm
 from django.views.generic import TemplateView
 
