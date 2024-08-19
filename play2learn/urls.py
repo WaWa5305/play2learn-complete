@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
+from .views import leaderboards_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +28,7 @@ urlpatterns = [
     path('contact/', views.contact_us, name='contact_us'),
     path('my_account/', views.my_account, name='my_account'),
     path('contact_thanks/', views.contact_thanks, name='contact_thanks'),
-    path('leaderboards/', views.leaderboards_view, name='leaderboards'),
+    path('leaderboards/', leaderboards_view, name='leaderboards'),
     path('games/', include('games.urls')),
     path('reviews/', views.reviews, name='reviews'),
     path('submit_review/', views.reviews, name='submit_review'),

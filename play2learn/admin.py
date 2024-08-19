@@ -1,20 +1,25 @@
-import os
-import sys
+from django.contrib import admin
+from .models import GameTracking, Review, ContactFormMessage, LeaderboardRecord
 
-def main():
-    """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "play2learn.settings")
-    
-    try:
-        from django.core.management import execute_from_command_line
-    except ImportError as exc:
-        raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
-        ) from exc
-    
-    execute_from_command_line(sys.argv)
+@admin.register(GameTracking)
+class GameTrackingAdmin(admin.ModelAdmin):
+    list_display = ('user', 'game', 'time_finished', 'game_type', 'final_score')
+    list_filter = ('game_type', 'time_finished')
+    search_fields = ('user__username', 'game__name')
 
-if __name__ == "__main__":
-    main()
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('user', 'title', 'featured', 'rating', 'created_at')
+    list_filter = ('featured', 'rating')
+    search_fields = ('user__username', 'title', 'content')
+
+@admin.register(ContactFormMessage)
+class ContactFormMessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'sent_at')
+    search_fields = ('name', 'email', 'message')
+
+@admin.register(LeaderboardRecord)
+class LeaderboardRecordAdmin(admin.ModelAdmin):
+    list_display = ('user', 'game', 'total_score')
+    list_filter = ('game',)
+    search_fields = ('user__username', 'game')

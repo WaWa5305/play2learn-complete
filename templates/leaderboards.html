@@ -1,4 +1,4 @@
-{% extends "base_vue.html" %}
+{% extends "_base_vue.html" %}
 
 {% block title %}Leaderboards - Play2Learn{% endblock %}
 
@@ -9,19 +9,21 @@
       <tr>
         <th>Rank</th>
         <th>Player</th>
+        <th>Game</th>
         <th>Score</th>
       </tr>
     </thead>
     <tbody>
-      {% for entry in leaderboard_data %}
+      {% for record in leaderboard_records %}
         <tr>
           <td>{{ forloop.counter }}</td>
-          <td>{{ entry.player_name }}</td>
-          <td>{{ entry.score }}</td>
+          <td>{{ record.user.username }}</td>
+          <td>{{ record.game }}</td>
+          <td>{{ record.total_score }}</td>
         </tr>
       {% empty %}
         <tr>
-          <td colspan="3">No leaderboard data available</td>
+          <td colspan="4">No records found</td>
         </tr>
       {% endfor %}
     </tbody>
