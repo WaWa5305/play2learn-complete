@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.contrib.auth import get_user_model
 from games.models import Game
 
-
 class GameTracking(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='play2learn_game_trackings')
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
