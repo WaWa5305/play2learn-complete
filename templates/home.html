@@ -1,0 +1,57 @@
+{% extends "_base_vue.html" %}
+{% block content %}
+  <div class="container">
+    <h1>Welcome to Play2Learn!</h1>
+    <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        {% for review in featured_reviews %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="d-block w-100">
+            <p>{{ review.review_text }}</p>
+            <footer class="blockquote-footer">{{ review.user.username }}</footer>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#reviewCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#reviewCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+    <h2>Game Leaderboards</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Math Facts</h3>
+        <ul class="list-group">
+          {% for record in math_facts_leaderboard %}
+          <li class="list-group-item">
+            {{ record.user.username }} - {{ record.total_score }}
+          </li>
+          {% empty %}
+          <li class="list-group-item">No scores available</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3>Anagrams Hunts</h3>
+        <ul class="list-group">
+          {% for record in anagrams_hunts_leaderboard %}
+          <li class="list-group-item">
+            {{ record.user.username }} - {{ record.total_score }}
+          </li>
+          {% empty %}
+          <li class="list-group-item">No scores available</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="mt-4">
+      <a href="{% url 'register' %}" class="btn btn-primary">Register Now</a>
+      <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+    </div>
+  </div>
+{% endblock %}

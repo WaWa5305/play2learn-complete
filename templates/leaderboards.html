@@ -1,0 +1,29 @@
+{% extends "base_vue.html" %}
+
+{% block title %}Leaderboards - Play2Learn{% endblock %}
+
+{% block main %}
+  <h2>Leaderboards</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in leaderboard_data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ entry.player_name }}</td>
+          <td>{{ entry.score }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No leaderboard data available</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

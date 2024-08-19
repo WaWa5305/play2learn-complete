@@ -1,0 +1,47 @@
+{% extends "base_vue.html" %}
+{% block title %}Reviews - Play2Learn{% endblock %}
+
+{% block main %}
+<div class="container">
+  <h1>User Reviews</h1>
+  <div id="reviewCarousel" class="carousel slide mt-4">
+    <div class="carousel-inner">
+      {% if reviews %}
+        {% for review in reviews %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="d-block w-100">
+              <p class="lead">"{{ review.review_text }}" - {{ review.user.username }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="carousel-item active">
+          <div class="d-block w-100">
+            <p class="lead">No reviews available.</p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <a class="carousel-control-prev" href="#reviewCarousel" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#reviewCarousel" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+  {% if user.is_authenticated %}
+    <div class="mt-4">
+      <h2>Leave a Review</h2>
+      <form method="post" action="{% url 'submit_review' %}">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+      </form>
+    </div>
+  {% else %}
+    <p>You need to be logged in to leave a review. <a href="{% url 'login' %}">Login here</a>.</p>
+  {% endif %}
+</div>
+{% endblock %}

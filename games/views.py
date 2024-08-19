@@ -23,6 +23,7 @@ def leaderboard(request):
     games = Game.objects.all().order_by('-score')
     return render(request, 'games/leaderboard.html', {'games': games})
 
+
 class MathFactsView(TemplateView):
     template_name = "math-facts.html"
 

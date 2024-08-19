@@ -1,5 +1,7 @@
 {% extends "_base_vue.html" %}
-{% block title %}Contact Us{% endblock %}
+
+{% block title %}Contact Us - Play2Learn{% endblock %}
+
 {% block main %}
 <div class="container">
     <h2>Contact Us</h2>
@@ -8,5 +10,9 @@
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Send</button>
     </form>
+    <hr>
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+    <p>Need an account? <a href="{% url 'register' %}">Register here</a>.</p>
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
 </div>
 {% endblock %}

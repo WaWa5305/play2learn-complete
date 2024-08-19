@@ -1,7 +1,14 @@
 {% extends "_base_vue.html" %}
-
-{% block title %}Math Facts{% endblock %}
+{% block title %}Math Facts - Play2Learn{% endblock %}
 {% block main %}
-  <h1>Math Facts</h1>
-  {{ block.super }}
+<div class="container">
+    <h1>Math Facts</h1>
+    {{ block.super }}
+    <hr>
+    <p><a href="{% url 'games:math-facts' %}">Math Facts</a></p>
+    <p><a href="{% url 'games:anagram-hunt' %}">Anagram Hunt</a></p>
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+    <p><a href="{% url 'my_account' %}">My Account</a></p>
+    <p><a href="{% url 'contact_us' %}">Contact Us</a></p>
+</div>
 {% endblock %}

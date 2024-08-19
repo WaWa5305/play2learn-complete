@@ -1,8 +1,23 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import GameTracking, Review, ContactFormMessage
+from .models import GameTracking, Review, LeaderboardRecord, ContactFormMessage
 from .forms import ContactForm
+from .forms import Review
+from .forms import ReviewForm
+
+
+def home(request):
+    featured_reviews = Review.objects.filter(is_featured=True)
+    math_facts_leaderboard = LeaderboardRecord.objects.filter(game='math_facts').order_by('-total_score')
+    anagrams_hunts_leaderboard = LeaderboardRecord.objects.filter(game='anagrams_hunts').order_by('-total_score')
+    
+    context = {
+        'featured_reviews': featured_reviews,
+        'math_facts_leaderboard': math_facts_leaderboard,
+        'anagrams_hunts_leaderboard': anagrams_hunts_leaderboard
+    }
+    return render(request, 'home.html', context)
 
 def register(request):
     if request.method == 'POST':
@@ -30,8 +45,11 @@ def contact_us(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
-            
+            ContactFormMessage.objects.create(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                message=form.cleaned_data['message']
+            )
             return redirect('contact_thanks')
     else:
         form = ContactForm()
@@ -39,3 +57,32 @@ def contact_us(request):
 
 def my_account(request):
     return render(request, 'my_account.html')
+
+def contact_thanks(request):
+    return render(request, 'contact_thanks.html')
+
+def leaderboards_view(request):
+    return render(request, 'leaderboards.html')
+
+def reviews(request):
+    reviews = Review.objects.all()
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.user = request.user
+                review.save()
+                return redirect('reviews')
+        else:
+            return redirect('login')
+    else:
+        form = ReviewForm()
+
+    return render(request, 'play2learn/reviews.html', {
+        'reviews': reviews,
+        'review_form': form
+    })
+    
+    
+    
