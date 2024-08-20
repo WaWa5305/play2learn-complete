@@ -1,0 +1,17 @@
+{% extends "_base_vue.html" %}
+
+{% block title %}Submit Review{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>Submit a Review</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+    </form>
+    <hr>
+    <p><a href="{% url 'reviews' %}">View all reviews</a></p>
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+</div>
+{% endblock %}

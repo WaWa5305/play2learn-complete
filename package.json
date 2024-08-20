@@ -1,0 +1,16 @@
+{
+  "name": "play2learn-complete",
+  "version": "1.0.0",
+  "description": "An educational web app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "educational",
+    "math",
+    "anagrams"
+  ],
+  "author": "Wanda Akers",
+  "license": "ISC"
+}

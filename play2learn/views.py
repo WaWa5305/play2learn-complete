@@ -41,6 +41,10 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
+def logout(request):
+    auth_logout(request)
+    return redirect('login')
+
 def contact_us(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -80,7 +84,7 @@ def reviews(request):
     else:
         form = ReviewForm()
 
-    return render(request, 'play2learn/reviews.html', {
+    return render(request, 'reviews.html', {
         'reviews': reviews,
         'review_form': form
     })

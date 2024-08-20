@@ -1,0 +1,13 @@
+{% extends "_base_vue.html" %}
+
+{% block title %}Logout{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>Logout</h2>
+    <p>You have been logged out successfully.</p>
+    <hr>
+    <p><a href="{% url 'login' %}">Login again</a></p>
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+</div>
+{% endblock %}
