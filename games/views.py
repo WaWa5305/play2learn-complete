@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect,
 from django.contrib.auth.decorators import login_required
-from .models import Game
-from .forms import GameForm
-from django.views.generic import TemplateView
+from .models import Game, Review
+from .forms import GameForm, ReviewForm, ContactForm
+from django.views.generic import TemplateView, ListView, CreateView, 
 
 @login_required
 def track_game(request):
@@ -29,3 +29,35 @@ class MathFactsView(TemplateView):
 
 class AnagramHuntView(TemplateView):
     template_name = "anagram-hunt.html"
+    
+class ReviewListView(ListView):
+    model = Review
+    template_name = 'games/review_list.html'
+    context_object_name = 'reviews'
+    
+class ReviewCreateView(CreateView):
+    model = Review
+    form_class = ReviewForm
+    template_name = 'games/review_form.html'
+    success_url = '/games/reviews/'
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+class ContactUsView(TemplateView):
+    template_name = 'games/contact_us.html'
+
+    def get(self, request):
+        form = ContactForm()
+        return self.render_to_response({'form': form})
+
+    def post(self, request):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            
+class UserAccountView(TemplateView):
+    template_name = 'games/user_account.html'
+    
+    
+

@@ -17,3 +17,4 @@ class GameForm(forms.ModelForm):
     class Meta:
         model = Game
         fields = ['game_type', 'game_settings', 'score'] 
+        exclude = ['user', 'finished_at']
