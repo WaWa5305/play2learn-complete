@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect,
+from django.shortcuts import render 
 from django.contrib.auth.decorators import login_required
 from .models import Game, Review
 from .forms import GameForm, ReviewForm, ContactForm
-from django.views.generic import TemplateView, ListView, CreateView, 
+from django.views.generic import TemplateView, ListView, CreateView 
 
 @login_required
 def track_game(request):
@@ -55,9 +55,15 @@ class ContactUsView(TemplateView):
     def post(self, request):
         form = ContactForm(request.POST)
         if form.is_valid():
+            return redirect('games:contact_us')
+        return self.render_to_response({'form': form})
             
 class UserAccountView(TemplateView):
     template_name = 'games/user_account.html'
     
+class GameListView(ListView):
+    model = Game
+    template_name = 'games/game_list.html'
     
+
 

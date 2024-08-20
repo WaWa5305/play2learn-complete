@@ -1,7 +1,7 @@
 from django.urls import path
 
 from games.views import (MathFactsView, AnagramHuntView,GameListView,
-    ReviewListView, GameDetailView,ReviewCreateView,ContactUsView,
+    ReviewListView,ReviewCreateView,ContactUsView,
     UserAccountView
 )
 
