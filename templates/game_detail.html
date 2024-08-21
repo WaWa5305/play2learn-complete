@@ -1,0 +1,11 @@
+{% extends "_base_vue.html" %}
+
+{% block title %}{{ object.name }} - Game Detail{% endblock %}
+
+{% block content %}
+    <h1>{{ object.name }}</h1>
+    <p><strong>Description:</strong> {{ object.description }}</p>
+    <p><strong>Release Date:</strong> {{ object.release_date }}</p>
+    <p><strong>Genre:</strong> {{ object.genre }}</p>
+    <a href="{% url 'game_list' %}" class="btn btn-primary">Back to Game List</a>
+{% endblock %}

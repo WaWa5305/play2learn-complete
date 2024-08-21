@@ -1,7 +1,7 @@
 from django.urls import path
 
 from games.views import (MathFactsView, AnagramHuntView,GameListView,
-    ReviewListView,ReviewCreateView,ContactUsView,
+    ReviewListView,ReviewCreateView,ContactUsView, GameDetailView,
     UserAccountView
 )
 
@@ -14,5 +14,7 @@ urlpatterns = [
     path('reviews/', ReviewListView.as_view(), name='reviews'),
     path('reviews/new/', ReviewCreateView.as_view(), name='review-create'),
     path('contact/', ContactUsView.as_view(), name='contact_us'),
+    path('', GameListView.as_view(), name='game_list'),
+    path('game/<int:pk>/', GameDetailView.as_view(), name='game_detail'),
     path('my-account/', UserAccountView.as_view(), name='my_account'),
 ]

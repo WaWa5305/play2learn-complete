@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Game, Review
 from .forms import GameForm, ReviewForm, ContactForm
-from django.views.generic import TemplateView, ListView, CreateView 
+from django.views.generic import TemplateView, ListView, CreateView, DetailView 
 
 @login_required
 def track_game(request):
@@ -64,6 +64,10 @@ class UserAccountView(TemplateView):
 class GameListView(ListView):
     model = Game
     template_name = 'games/game_list.html'
+    
+class GameDetailView(DetailView):
+    model = Game
+    template_name = 'games/game_detail.html'
     
 
 
