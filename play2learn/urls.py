@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-from .views import leaderboards_view
+from .views import leaderboard_view
 from django.contrib.auth import views as auth_views
 
 
@@ -29,10 +29,9 @@ urlpatterns = [
     path('contact/', views.contact_us, name='contact_us'),
     path('my_account/', views.my_account, name='my_account'),
     path('contact_thanks/', views.contact_thanks, name='contact_thanks'),
-    path('leaderboards/', leaderboards_view, name='leaderboards'),
+    path('leaderboard/', leaderboard_view, name='leaderboard'),
     path('games/', include('games.urls')),
     path('reviews/', views.reviews, name='reviews'),
     path('submit_review/', views.reviews, name='submit_review'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
-

@@ -65,9 +65,9 @@ def my_account(request):
 def contact_thanks(request):
     return render(request, 'contact_thanks.html')
 
-def leaderboards_view(request):
+def leaderboard_view(request):
     records = LeaderboardRecord.objects.all()
-    return render(request, 'leaderboards.html', {'leaderboard_records': records})
+    return render(request, 'leaderboard.html', {'leaderboard_records': records})
 
 def reviews(request):
     reviews = Review.objects.all()
