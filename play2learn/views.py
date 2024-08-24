@@ -5,6 +5,7 @@ from .models import GameTracking, Review, LeaderboardRecord, ContactFormMessage
 from .forms import ContactForm
 from .forms import Review
 from .forms import ReviewForm
+from django.contrib.auth import logout
 
 
 def home(request):
@@ -41,9 +42,9 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-def logout(request):
-    auth_logout(request)
-    return redirect('login')
+def logout_view(request):
+    logout(request)
+    return redirect('logout')
 
 def contact_us(request):
     if request.method == 'POST':

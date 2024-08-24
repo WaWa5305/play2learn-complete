@@ -63,7 +63,7 @@ class UserAccountView(TemplateView):
     
 class GameListView(ListView):
     model = Game
-    template_name = 'games/game_list.html'
+    template_name = 'game_list.html'
     
 class GameDetailView(DetailView):
     model = Game

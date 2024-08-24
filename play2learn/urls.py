@@ -19,13 +19,14 @@ from django.urls import path, include
 from . import views
 from .views import leaderboard_view
 from django.contrib.auth import views as auth_views
-
+from .views import logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('register/', views.register, name='register'),
     path('login/', views.login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
     path('contact/', views.contact_us, name='contact_us'),
     path('my_account/', views.my_account, name='my_account'),
     path('contact_thanks/', views.contact_thanks, name='contact_thanks'),
@@ -33,5 +34,5 @@ urlpatterns = [
     path('games/', include('games.urls')),
     path('reviews/', views.reviews, name='reviews'),
     path('submit_review/', views.reviews, name='submit_review'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
 ]
